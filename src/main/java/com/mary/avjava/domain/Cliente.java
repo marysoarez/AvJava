@@ -1,18 +1,19 @@
 package com.mary.avjava.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
 public class Cliente implements Serializable {
-	
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -20,6 +21,10 @@ public class Cliente implements Serializable {
 	private Integer id;
 	private String nome;
 	private String nascimento;
+	
+	@OneToMany(mappedBy="cliente")
+	private List <Endereco> enderecos = new ArrayList<>();
+	
 	
 	public Cliente () {
 	}
@@ -53,6 +58,14 @@ public class Cliente implements Serializable {
 
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	@Override
