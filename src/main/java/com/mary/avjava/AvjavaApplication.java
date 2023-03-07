@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.mary.avjava.domain.Cliente;
 import com.mary.avjava.domain.Endereco;
+import com.mary.avjava.domain.enums.TipoEndereco;
 import com.mary.avjava.repositories.ClienteRepository;
 import com.mary.avjava.repositories.EnderecoRepository;
 
@@ -32,8 +33,8 @@ public class AvjavaApplication implements CommandLineRunner {
 		
 		Cliente clie = new Cliente(null, "nome de teste", "inserir a data");
 		
-		Endereco end1 = new Endereco(null, "rua j", "230", "21660470", "Rio", clie);
-		Endereco end2 = new Endereco(null, "rua a", "347", "21660430", "Rio", clie);
+		Endereco end1 = new Endereco(null, "rua j", "230", "21660470", "Rio", clie,TipoEndereco.PRINCIAL);
+		Endereco end2 = new Endereco(null, "rua a", "347", "21660430", "Rio", clie, TipoEndereco.SECUNDARIO);
 		
 		clie.getEnderecos().addAll(Arrays.asList(end1, end2));
 		

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.mary.avjava.domain.Cliente;
 
-import jakarta.validation.constraints.NotEmpty;
+
 
 public class ClienteDTO implements Serializable{
 
@@ -13,10 +13,10 @@ public class ClienteDTO implements Serializable{
 
 	private Integer id;
 	
-	@NotEmpty(message="Campo Obrigatório")
+	
 	private String nome;
 	
-	@NotEmpty
+	
 	private String nascimento;
 	
 	public ClienteDTO() {

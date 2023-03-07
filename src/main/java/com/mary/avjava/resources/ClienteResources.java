@@ -22,6 +22,7 @@ import com.mary.avjava.services.ClienteService;
 
 
 
+
 @RestController
 @RequestMapping(value="/clientes")
 
@@ -40,7 +41,9 @@ public class ClienteResources {
 		}
 		
 		@RequestMapping(method=RequestMethod.POST)
-		public ResponseEntity<Void> insert(@RequestBody Cliente obj) throws MalformedURLException{
+		public ResponseEntity<Void> insert( @RequestBody ClienteDTO objDto) throws MalformedURLException{
+			Cliente obj = service.fromDTO(objDto);
+			
 			obj = service.insert(obj);
 			URL uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}").build(obj.getId()).toURL();
@@ -50,7 +53,8 @@ public class ClienteResources {
 	
 
 		@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-		public ResponseEntity<Void> update (@RequestBody Cliente obj, @PathVariable Integer id){
+		public ResponseEntity<Void> update (@RequestBody ClienteDTO objDto, @PathVariable Integer id){
+			Cliente obj = service.fromDTO(objDto);
 			obj.setId(id);
 			obj = service.update(obj);
 			return ResponseEntity.noContent().build();

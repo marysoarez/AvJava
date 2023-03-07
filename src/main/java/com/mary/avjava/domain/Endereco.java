@@ -1,9 +1,11 @@
 package com.mary.avjava.domain;
 
 import java.io.Serializable;
+
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.mary.avjava.domain.enums.TipoEndereco;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +26,20 @@ public class Endereco implements Serializable {
 	private String numero;
 	private String cep;
 	private String cidade;
+	private Integer tipo;
+
 	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	
 	public Endereco() {
 		
 	}
 
-	public Endereco(Integer id, String logradouro, String numero, String cep, String cidade, Cliente cliente) {
+	public Endereco(Integer id, String logradouro, String numero, String cep, String cidade, Cliente cliente, TipoEndereco tipo) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -42,6 +47,7 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.cliente = cliente;
+		this.tipo = tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -107,6 +113,14 @@ public class Endereco implements Serializable {
 			return false;
 		Endereco other = (Endereco) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public TipoEndereco getTipo() {
+		return TipoEndereco.toEnum(tipo);
+	}
+
+	public void setTipo(TipoEndereco tipo) {
+		this.tipo = tipo.getCod();
 	}
 	
 	

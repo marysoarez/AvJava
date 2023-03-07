@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.mary.avjava.domain.Cliente;
+import com.mary.avjava.dto.ClienteDTO;
 import com.mary.avjava.repositories.ClienteRepository;
 import com.mary.avjava.services.exceptions.DataIntegrityException;
 import com.mary.avjava.services.exceptions.ObjectNotFoundException;
@@ -60,4 +61,11 @@ public class ClienteService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	
+	public Cliente fromDTO(ClienteDTO objDto) {
+		return new Cliente (objDto.getId(),objDto.getNome(), objDto.getNascimento() );
+		
+	}
+	
 }
+
